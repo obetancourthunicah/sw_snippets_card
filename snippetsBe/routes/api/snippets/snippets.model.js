@@ -1,5 +1,5 @@
 
-const mySqlConn = require('../../utils/db');
+const { mysqlConn, query} = require('../../utils/db');
 // allHandler(err, returnValue)
 module.exports.getAll = (handler)=>{
   mySqlConn.query(
@@ -18,9 +18,9 @@ module.exports.getAll = (handler)=>{
 
 //TODO
 module.exports.getAllAsync = async ()=>{
-  // try{
-  //   return await mySqlConn.query("Select * from snippets");
-  // }catch(e){
-  //   throw(e);
-  // }
+  try{
+     return await query("Select * from snippets");
+   }catch(e){
+     throw(e);
+   }
 }

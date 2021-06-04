@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
-const { getAll } = require("./snippets.model");
+const { getAll, getAllAsync } = require("./snippets.model");
 
 router.get("/", (req, res)=>{
 	res.status(200).json({"version":0.01});
@@ -17,6 +17,16 @@ router.get("/all", (req, res)=>{
       }
     }
   );
+});
+
+router.get("/allasync", async (req, res) => {
+  try{
+    const rows =  await getAllAsync();
+    res.status(200).json(rows);
+  }catch(ex){
+    console.log(ex);
+    res.status(500).json({msg:"error"});
+  }
 });
 
 
