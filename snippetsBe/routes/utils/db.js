@@ -13,6 +13,7 @@ mysqlConn.connect((err)=>{
 		process.exit(1);
 	}
 } );
+
 var query = (sql, args)=>{
   return new Promise(
     (resolve, reject) => {
