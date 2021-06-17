@@ -1,0 +1,3 @@
+docsToInsert=[];
+for (var i=0; i<100; i++){let doc={}; doc.name="Snippet " + (i+1);  doc.snippet="snippet content " + (i+1); doc.user = "obetancourth"; doc.sales = Math.ceil(Math.random() * 100); docsToInsert.push(doc); }
+db.snippets.insert(docsToInsert);

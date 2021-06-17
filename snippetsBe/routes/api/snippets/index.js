@@ -89,8 +89,9 @@ router.post(
     //validaciones
     try{
       const result = await addNewAsync({ snippetName, snippet, stated})
-      res.status("200").json(result);
+      res.status(200).json(result);
     }  catch (ex) {
+      console.log(ex);
       res.status(500).json({ msg: "error" });
     }
   }

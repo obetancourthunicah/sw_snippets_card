@@ -121,7 +121,7 @@ module.exports.updateAsync = async ({ snippetName, snippet, stated , id}) => {
   }
 }
 
-module.exports.deleteAsync = async ( id) => {
+module.exports.deleteAsync = async (id) => {
   const sqlstr = "DELETE FROM  snippets where id = ?;";
   try {
     return await query(sqlstr, [id]);
