@@ -7,7 +7,10 @@ const {
   getById,
   getBySales,
   getBySalesWithOperator,
-  getBySalesRange
+  getBySalesRange,
+  getByKeyword,
+  addKeywords,
+  addKeyword
 } = require('./snippets.model');
 
 router.get(
@@ -80,6 +83,20 @@ router.get(
   }
 );
 
+router.get(
+  "/bykeyword/:keyword",
+  async (req, res) => {
+    try {
+      let { keyword } = req.params;
+      let rows = await getByKeyword(keyword);
+      res.status(200).json(rows);
+    } catch (ex) {
+      console.log(ex);
+      res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
+
 router.post(
   "/new",
   async (req, res)=>{
@@ -106,6 +123,32 @@ router.post(
   }
 );
 
+router.put(
+  "/addkeyword/:id",
+  async (req, res)=>{
+    try{
+      const {id} = req.params;
+      const {keyword} = req.body;
+      let result = await addKeyword(id, keyword);
+      res.status(200).json(result);
+    }catch(ex){
+      res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
 
+router.put(
+  "/addkeywords/:id",
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      const { keywords } = req.body;
+      let result = await addKeywords(id, keywords);
+      res.status(200).json(result);
+    } catch (ex) {
+      res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
 
 module.exports = router;

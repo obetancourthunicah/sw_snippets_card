@@ -126,6 +126,44 @@ module.exports.addAny = async (document) => {
   }
 }
 
+module.exports.addKeyword = async (id, keyword) =>{
+  try {
+    const _id = new ObjectId(id);
+    const filter = {"_id": _id};
+    const updateObj = {"$push":{"keywords": keyword}};
+    let result = await snippetCollection.updateOne(filter, updateObj);
+    return result;
+  } catch(ex) {
+    console.log(ex);
+    throw(ex);
+  }
+}
+
+module.exports.addKeywords = async (id, keywords) => {
+  try {
+    const _id = new ObjectId(id);
+    const filter = { "_id": _id };
+    const updateObj = { "$set": { "keywords": keywords.split(",") } };
+    let result = await snippetCollection.updateOne(filter, updateObj);
+    return result;
+  } catch (ex) {
+    console.log(ex);
+    throw (ex);
+  }
+}
+
+module.exports.getByKeyword = async (keyword) => {
+  try {
+    const filter = { "keywords": keyword };
+    let cursor = snippetCollection.find(filter);
+    let rows = await cursor.toArray();
+    return rows;
+  } catch (ex) {
+    console.log(ex);
+    throw (ex);
+  }
+}
+
 //   _id: ObjectID("afasdasdccasb102938")
 
 // Operadores en Mongodb son distintos

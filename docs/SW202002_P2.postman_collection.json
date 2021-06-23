@@ -110,7 +110,180 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "{{HOST}}/api/snippets/byid/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"byid",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c9494826a4fa098ab250da"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Sales",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/snippets/bysales/:sales",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"bysales",
+								":sales"
+							],
+							"variable": [
+								{
+									"key": "sales",
+									"value": "87"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Sales with Operator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/snippets/bysales/:operator/:sales",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"bysales",
+								":operator",
+								":sales"
+							],
+							"variable": [
+								{
+									"key": "operator",
+									"value": "lte"
+								},
+								{
+									"key": "sales",
+									"value": "36"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Sales Range",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/snippets/bysales/range/:lower/:upper/:incEndings",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"bysales",
+								"range",
+								":lower",
+								":upper",
+								":incEndings"
+							],
+							"variable": [
+								{
+									"key": "lower",
+									"value": "20"
+								},
+								{
+									"key": "upper",
+									"value": "30"
+								},
+								{
+									"key": "incEndings",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Keyword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/snippets/bykeyword/:keyword",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"bykeyword",
+								":keyword"
+							],
+							"variable": [
+								{
+									"key": "keyword",
+									"value": "class"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Keyword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "keyword",
+									"value": "test",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/snippets/addkeyword/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"addkeyword",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60ca9b1b7cbfe2dc8544ffe6"
+								}
+							]
+						}
 					},
 					"response": []
 				}
