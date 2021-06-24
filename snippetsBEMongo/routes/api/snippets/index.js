@@ -10,7 +10,9 @@ const {
   getBySalesRange,
   getByKeyword,
   addKeywords,
-  addKeyword
+  addKeyword,
+  getByCommentUser,
+  deleteById
 } = require('./snippets.model');
 
 router.get(
@@ -97,6 +99,20 @@ router.get(
   }
 );
 
+router.get(
+  "/bycommentemail/:email",
+  async (req, res)=>{
+    try{
+      const {email} = req.params;
+      let rows = await getByCommentUser(email);
+      res.status(200).json(rows);
+    }catch(ex){
+      console.log(ex);
+      res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
+
 router.post(
   "/new",
   async (req, res)=>{
@@ -151,4 +167,17 @@ router.put(
   }
 );
 
+
+router.delete(
+  "/del/:id",
+  async (req, res) => {
+    try {
+      const { id } = req.params;
+      let result = await deleteById(id);
+      res.status(200).json(result);
+    } catch (ex) {
+      res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
 module.exports = router;

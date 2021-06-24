@@ -164,6 +164,30 @@ module.exports.getByKeyword = async (keyword) => {
   }
 }
 
+module.exports.getByCommentUser = async (email)=>{
+  try{
+    const filter = {"comments.email": email};
+    let cursor = snippetCollection.find(filter, { projection:{name:1, sales:1} });
+    let rows = await cursor.toArray();
+    return rows;
+  }catch(ex){
+    console.log(ex);
+    throw(ex);
+  }
+}
+
+module.exports.deleteById = async (id) => {
+  try {
+    const _id = new ObjectId(id);
+    const filter = { _id: _id };
+    let row = await snippetCollection.deleteOne(filter);
+    return row;
+  } catch (ex) {
+    console.log(ex);
+    throw (ex);
+  }
+}
+
 //   _id: ObjectID("afasdasdccasb102938")
 
 // Operadores en Mongodb son distintos
