@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {
   getAll,
+  getAllFacet,
   addOne,
   addAny,
   getById,
@@ -23,6 +24,21 @@ router.get(
       res.status(200).json(rows);
     }catch(ex){
       res.status(500).json({"msg":"Error"});
+    }
+  }
+);
+
+router.get(
+  "/facet/:page/:size",
+  async (req, res) => {
+    try {
+      let {page, size} = req.params;
+      page = parseInt(page);
+      size = parseInt(size);
+      let result = await getAllFacet(page, size);
+      res.status(200).json({...result, page, size});
+    } catch (ex) {
+      res.status(500).json({ "msg": "Error" });
     }
   }
 );

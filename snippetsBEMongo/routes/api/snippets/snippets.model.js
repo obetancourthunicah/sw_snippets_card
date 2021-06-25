@@ -30,6 +30,25 @@ module.exports.getAll = async ()=>{
   }
 }
 
+module.exports.getAllFacet = async (page, itemsPerPage) => {
+  try {
+    let options = {
+      skip: (page - 1) * itemsPerPage,
+      limit: itemsPerPage,
+      projection: {name:1, sales:1, keywords:1},
+      sort:[["name", 1]]
+    };
+
+    let docsCursor = snippetCollection.find({}, options);
+    let rownum = await docsCursor.count();
+    let rows = await docsCursor.toArray()
+    return {rownum, rows};
+  } catch (ex) {
+    console.log(ex);
+    throw (ex);
+  }
+}
+
 module.exports.getById = async (id)=>{
   try {
     const _id = new ObjectId(id);
@@ -211,5 +230,30 @@ db.snippets.find({sales: {$lte : 40} })
 select * from snippets where sales > 20 and sales < 30;
 
 db.snippets.find({sales : {$gt:20, $lt:30} });
+
+
+
+MySQL
+
+select count(*) from snippets; 
+Pagin 1 50
+select * from snippets limit (1, 50);
+select * from snippets limit (51, 100);
+
+select * from snippets order by sales, name;
+
+0 name , 1 sales
+
+0 sales, 1 name
+
+json (no determina orden)
+
+{name:1, sales:1} === {sales:1, name:1}
+
+["names", "sales"] !== ["sales", "names"]
+
+0, 1
+
+
 
 */
