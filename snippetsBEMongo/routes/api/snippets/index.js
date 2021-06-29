@@ -13,7 +13,8 @@ const {
   addKeywords,
   addKeyword,
   getByCommentUser,
-  deleteById
+  deleteById,
+  getSalesFreq
 } = require('./snippets.model');
 
 router.get(
@@ -37,6 +38,18 @@ router.get(
       size = parseInt(size);
       let result = await getAllFacet(page, size);
       res.status(200).json({...result, page, size});
+    } catch (ex) {
+      res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
+
+router.get(
+  "/aggregate/sales",
+  async (req, res) => {
+    try {
+      let result = await getSalesFreq();
+      res.status(200).json(result);
     } catch (ex) {
       res.status(500).json({ "msg": "Error" });
     }

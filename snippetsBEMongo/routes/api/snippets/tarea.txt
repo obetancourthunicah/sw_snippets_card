@@ -1,0 +1,56 @@
+{
+  _id:
+  fecha:
+  tipo:
+  observacion:
+  servicioAfectado:
+  usuario: {
+    identidad:
+    nombre:
+    correo:
+  }
+  holder:{
+    identidad:
+    nombre:
+    correo:
+  }
+  estado:
+  notas:[
+    {
+      fecha:
+      observacion:
+      accion:
+      usuario: {
+        identidad:
+        nombre:
+        correo:
+      }
+    },
+  ]
+  fechaCierre:
+  usuarioCierre: {
+    identidad:
+    nombre:
+    correo:
+  }
+  tipoCierre:
+  evaluacion:{
+    eficiencia:
+    satisfaccion:
+    conformidad:
+  }
+}
+
+POST nuevo
+PUT  agregarnota
+PUT  cerrar
+PUT  evaluar
+PUT  capturarTicket  --> establece el holder del ticket
+
+GET ticketsbyuser/:estado/:page
+GET ticketsbyholder/:estado/:page
+GET tickets/:estado/:page
+GET ticketsage/:estado/:page     facet  25  order by fecha desc
+GET ticketbyid/:id 
+
+helpdesk
