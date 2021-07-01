@@ -242,6 +242,31 @@ module.exports.getSalesFreq = async () => {
   }
 }
 
+module.exports.getCommentByDate = async ()=>{
+  try {
+    let pipeline = [{
+      $unwind: {
+        path: "$comments",
+        includeArrayIndex: 'comment_index',
+        preserveNullAndEmptyArrays: false
+      }
+    }, {
+      $group: {
+        _id: { $dateToString: { date: { $toDate: "$comments.date" }, format: "%Y-%m-%d %H:00:%S", timezone: "-0600" } },
+        frecuency: {
+          "$sum": 1
+        }
+      }
+    }];
+    let cursor = snippetCollection.aggregate(pipeline);
+    let rows = await cursor.toArray();
+    return rows;
+  } catch(ex){
+    console.log(ex);
+    throw(ex);
+  }
+}
+
 //   _id: ObjectID("afasdasdccasb102938")
 
 // select sales, count(*) as salesAmount from snippets group by sales;

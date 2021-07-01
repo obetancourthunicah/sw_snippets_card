@@ -14,7 +14,8 @@ const {
   addKeyword,
   getByCommentUser,
   deleteById,
-  getSalesFreq
+  getSalesFreq,
+  getCommentByDate
 } = require('./snippets.model');
 
 router.get(
@@ -65,6 +66,18 @@ router.get(
       res.status(200).json(row);
     }catch(ex){
       res.status(500).json({ "msg": "Error" });
+    }
+  }
+);
+
+router.get(
+  "/commentsbydate",
+  async (req, res)=>{
+    try{
+      let rows = await getCommentByDate();
+      res.status(200).json(rows);
+    } catch (ex) {
+      res.status(500).json({"msg":"Error!"})
     }
   }
 );
@@ -209,4 +222,6 @@ router.delete(
     }
   }
 );
+
+
 module.exports = router;
