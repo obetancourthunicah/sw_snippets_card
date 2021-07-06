@@ -13,7 +13,6 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET
     },
     (payload, next) => {
-      console.log(payload);
       return next(null, payload);
     }
   )

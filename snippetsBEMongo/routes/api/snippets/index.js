@@ -22,8 +22,14 @@ router.get(
   "/",
   async (req, res)=>{
     try{
-      let rows = await getAll();
-      res.status(200).json(rows);
+      console.log(req.user);
+      let allowed = req.user.roles.indexOf("useradmin");
+      if (allowed >= 0){
+        let rows = await getAll();
+        res.status(200).json(rows);
+      } else {
+        res.status(401).json({"msg":"No tiene privilegios"});
+      }
     }catch(ex){
       res.status(500).json({"msg":"Error"});
     }
@@ -160,7 +166,7 @@ router.post(
   async (req, res)=>{
     try{
       let {name, snippet} = req.body;
-      let docInserted = await addOne(name, snippet, 'obetancourth');
+      let docInserted = await addOne(name, snippet, req.user._id);
       res.status(200).json(docInserted);
     }catch(ex){
       res.status(500).json({"msg":"Error"});

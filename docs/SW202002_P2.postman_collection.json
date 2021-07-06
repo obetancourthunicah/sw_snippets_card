@@ -286,6 +286,166 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get by Comment User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/snippets/bycommentemail/:email",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"bycommentemail",
+								":email"
+							],
+							"variable": [
+								{
+									"key": "email",
+									"value": "alguncorreo@gmail.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Facet with Page and items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/api/snippets/facet/:page/:size",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"snippets",
+								"facet",
+								":page",
+								":size"
+							],
+							"variable": [
+								{
+									"key": "page",
+									"value": "10"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{JWT_T}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "Sigin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "obetancourthunicah@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "pswd",
+									"value": "Konoha%33",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/security/signin",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"security",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "obetancourthunicah@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "pswd",
+									"value": "Konoha%33",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{HOST}}/api/security/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"api",
+								"security",
+								"login"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -314,6 +474,10 @@
 		{
 			"key": "HOST",
 			"value": "http://localhost:3000/"
+		},
+		{
+			"key": "JWT_T",
+			"value": ""
 		}
 	]
 }
