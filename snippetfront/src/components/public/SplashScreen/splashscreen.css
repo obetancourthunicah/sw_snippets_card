@@ -1,0 +1,12 @@
+.SplashScreen{
+  width:100vw;
+  height:100vh;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.SplashScreen h1{
+  margin:0;
+  padding:0;
+}
