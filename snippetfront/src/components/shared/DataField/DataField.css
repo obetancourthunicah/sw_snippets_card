@@ -1,0 +1,16 @@
+fieldset{
+  display:flex;
+  flex-direction: column;
+  border: none;
+}
+
+fieldset label{
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+fieldset input{
+  border: 1px solid #333;
+  padding:0.5rem 1rem;
+  font-size:1rem;
+}

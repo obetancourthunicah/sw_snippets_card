@@ -1,6 +1,6 @@
 .SplashScreen{
   width:100vw;
-  height:100vh;
+  height:calc(100vh - 43.5px);
   display:flex;
   justify-content: center;
   align-items: center;
