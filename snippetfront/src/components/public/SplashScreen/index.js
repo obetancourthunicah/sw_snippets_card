@@ -1,10 +1,23 @@
 //JSX
 import "./splashscreen.css";
+import { useSession } from "../../../hooks/Session";
+import { useEffect } from "react";
 
 const SplashScreen = () => {
+  const [ {app}, dispatch ] = useSession();
+  console.log(app);
+  useEffect(()=>{
+    setTimeout(()=>{
+      dispatch({ type:"APP_MIN"});
+    }, 10000)
+  },[])
   return (
     <section className="SplashScreen">
-      <h1>Snippets Market V1</h1>
+      <div>
+        <h1>Snippets Market V1</h1>
+        <h2>Initialized: {app.initialized && "OK"}</h2>
+        <h2>Time Elapsed: {app.minTimeElapsed && "OK" } </h2>
+      </div>
     </section>
   );
 }

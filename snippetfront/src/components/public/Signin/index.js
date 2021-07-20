@@ -1,14 +1,12 @@
 import DataField from  '../../shared/DataField/DataField';
-
+import Page from '../../shared/Page/Page';
 import {useState} from 'react';
 
 const Signin = ()=>{
   const [email, setEmail] = useState();
   const  [pswd, setPassword] = useState();
   return (
-    <section>
-      <h1>Sigin</h1>
-      <form>
+    <Page showHeader title="Sign In">
         <DataField
           labelText="Correo Electrónico"
           type="email"
@@ -30,10 +28,8 @@ const Signin = ()=>{
           title="Contraseña"
           error=""
           onChange={(e)=>{ setPassword(e.target.value)}}>
-        </DataField>
-      </form>
-      
-    </section>
+        </DataField>      
+    </Page>
   )
 }
 

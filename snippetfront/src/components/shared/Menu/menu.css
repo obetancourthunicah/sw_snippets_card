@@ -1,4 +1,6 @@
 .Menu{
+  position:fixed;
+  bottom: 0px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -8,6 +10,7 @@
   margin:0;
   background-color: #000;
   color:#fff;
+  width:100%;
 }
 .Menu li{
   flex:1;

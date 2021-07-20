@@ -1,5 +1,5 @@
 import './DataField.css';
-const DataField = ({ labelText, type, placeholder, value, name, id, error, title, onChangeHandler})=>{
+const DataField = ({ labelText, type, placeholder, value, name, id, error, title, onChange})=>{
   //const errorControl = (error && true) ? (<div className="error">{error}</div>) : null;
   return (
     <fieldset>
@@ -11,7 +11,7 @@ const DataField = ({ labelText, type, placeholder, value, name, id, error, title
         name={name}
         id={id}
         title={title}
-        onChange={onChangeHandler}
+        onChange={onChange}
       />
       {(error && (<div className="error">{error}</div>))}
     </fieldset>

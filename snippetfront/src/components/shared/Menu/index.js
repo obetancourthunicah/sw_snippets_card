@@ -2,8 +2,10 @@
 // login
 import './menu.css';
 import { Link } from 'react-router-dom';
-const Menu = ( {login} )=>{
-  if (!login){
+import {useSession} from '../../../hooks/Session';
+const Menu = ()=>{
+  let [ {sec}, ] = useSession();
+  if (!sec.isLogged){
     return (
       <ul className="Menu">
         <li><Link to='/login'>Login</Link></li>
@@ -13,10 +15,10 @@ const Menu = ( {login} )=>{
   }else {
     return (
       <ul className="Menu">
-        <li><a href>Snippets</a></li>
-        <li><a href>Dashboard</a></li>
-        <li><a href>Profile</a></li>
-        <li><a href>Upload</a></li>
+        <li><Link to="/mysnippets">Snippets</Link></li>
+        <li><a >Dashboard</a></li>
+        <li><a >Profile</a></li>
+        <li><a >Upload</a></li>
       </ul>
     );
   }

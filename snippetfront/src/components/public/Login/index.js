@@ -1,14 +1,33 @@
 import DataField from  '../../shared/DataField/DataField';
-
+import Button from '../../shared/Buttons/Button';
+import Page from '../../shared/Page/Page';
+import {useSession} from '../../../hooks/Session';
 import {useState} from 'react';
-
+import {SEC_LOGIN, SEC_FETCHING} from '../../../store/reducers/sec';
+import { publicaxios } from '../../../store/axios';
 const Login = ()=>{
-  const [email, setEmail] = useState();
-  const  [pswd, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [pswd, setPassword] = useState("");
+  const [{ sec }, dispatch] = useSession();
+
+  const onClickHandler = async (e)=>{
+    e.preventDefault();
+    e.stopPropagation();
+    console.log(email);
+    dispatch({ type: SEC_FETCHING });
+    try{
+      const { data } = await publicaxios.post(
+      "/api/security/login",
+      {email:email, pswd:pswd}
+    );
+    dispatch({ type: SEC_LOGIN, payload: data });
+    } catch(ex){
+      //Dispacth del error
+    }
+    
+  };
   return (
-    <section>
-      <h1>Login</h1>
-      <form>
+    <Page showHeader={true} title="Login">
         <DataField
           labelText="Correo Electrónico"
           type="email"
@@ -31,9 +50,10 @@ const Login = ()=>{
           error=""
           onChange={(e)=>{ setPassword(e.target.value)}}>
         </DataField>
-      </form>
-      
-    </section>
+        <section style={{padding:"1rem"}}>
+          <Button onClick={onClickHandler}>Iniciar Sesión</Button>
+        </section>
+    </Page>
   )
 }
 

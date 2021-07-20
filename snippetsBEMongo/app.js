@@ -4,11 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var lessMiddleware = require('less-middleware');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var apiRouter = require('./routes/api');
-var app = express();
 
+var corsOptions = {
+  origin: process.env.CORS_ORIGIN,
+  optionSuccessStatus: 200
+}
+
+var app = express();
+// enable cors
+if (process.env.ENABLE_CORS == "1") {
+  app.use(cors(corsOptions));
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

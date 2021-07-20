@@ -1,0 +1,14 @@
+.page{
+  display:flex;
+  flex-direction: column;
+  margin-bottom:43.5px;
+  padding:1em;
+}
+.withHeader{
+  margin-top:44px;
+  min-height:calc(100vh - 88px);
+}
+
+.withNoHeader{
+  min-height:calc(100vh - 43.5px);
+}
