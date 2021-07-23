@@ -1,3 +1,5 @@
+import { setJWT } from "../axios";
+
 let emptySec = {
   isLogged: false,
   isVerifying: false,
@@ -11,7 +13,7 @@ if(localStorage.getItem("sec_str") && true) {
 }
 
 if(emptySec.isLogged){
-  //verificacion ping function
+  setJWT(emptySec.user.jwt);
 }
 
 export const SEC_LOGIN = "SEC_LOGIN";
@@ -43,7 +45,7 @@ const secReducer = (state = emptySec, action = {}) => {
         error: action.payload
       };
     case SEC_LOGOUT:
-      return {
+      const newSecL = {
         ...state,
         isVerifying: false,
         isLogged: false,
@@ -51,6 +53,8 @@ const secReducer = (state = emptySec, action = {}) => {
         error: "",
         user: null
       };
+      localStorage.setItem("sec_str", JSON.stringify(newSecL));
+      return newSecL;
     default:
       return state;
   }

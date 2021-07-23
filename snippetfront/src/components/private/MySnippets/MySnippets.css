@@ -1,0 +1,20 @@
+.listItem {
+  list-style:none;
+  padding:1em;
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  flex-direction:row;
+  border-bottom:1px solid #000;
+}
+.listHolder{
+  margin:0px;
+  padding:0px;
+}
+.listDetail{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+  width:calc(100% - 64px);
+}

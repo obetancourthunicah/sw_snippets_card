@@ -5,15 +5,17 @@ import {useSession} from '../../../hooks/Session';
 import {useState} from 'react';
 import {SEC_LOGIN, SEC_FETCHING} from '../../../store/reducers/sec';
 import { publicaxios } from '../../../store/axios';
+import { useHistory , useLocation} from 'react-router-dom';
 const Login = ()=>{
   const [email, setEmail] = useState("");
   const [pswd, setPassword] = useState("");
   const [{ sec }, dispatch] = useSession();
-
+  const location = useLocation();
+  const routeHistory = useHistory();
+  let { from } = location.state || { from : {pathname:"/"}};
   const onClickHandler = async (e)=>{
     e.preventDefault();
     e.stopPropagation();
-    console.log(email);
     dispatch({ type: SEC_FETCHING });
     try{
       const { data } = await publicaxios.post(
@@ -21,10 +23,10 @@ const Login = ()=>{
       {email:email, pswd:pswd}
     );
     dispatch({ type: SEC_LOGIN, payload: data });
+    routeHistory.replace(from);
     } catch(ex){
       //Dispacth del error
     }
-    
   };
   return (
     <Page showHeader={true} title="Login">

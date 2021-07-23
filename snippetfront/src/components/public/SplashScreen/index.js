@@ -1,16 +1,34 @@
 //JSX
 import "./splashscreen.css";
 import { useSession } from "../../../hooks/Session";
-import { useEffect } from "react";
-
-const SplashScreen = () => {
-  const [ {app}, dispatch ] = useSession();
-  console.log(app);
+import { Fragment, useEffect } from "react";
+import { privateaxios, setUnAuthInterceptor } from '../../../store/axios';
+import { SEC_LOGOUT } from "../../../store/reducers/sec";
+import { APP_INIT, APP_MIN } from "../../../store/reducers/app";
+const SplashScreen = ({children}) => {
+  const [ {app, sec}, dispatch ] = useSession();
+  const logoutHandler = ()=>{
+    dispatch({ type: SEC_LOGOUT });
+  }
+  useEffect(async ()=>{
+    setUnAuthInterceptor(logoutHandler);
+    if (sec.isLogged) {
+      try {
+        let data = await privateaxios.get('/api/utils/ping');
+        dispatch({ type: APP_INIT });
+      } catch (ex) {
+        dispatch({ type: SEC_LOGOUT });
+      }
+    } else {
+      dispatch({ type: APP_INIT });
+    }
+  }, []);
   useEffect(()=>{
     setTimeout(()=>{
-      dispatch({ type:"APP_MIN"});
-    }, 10000)
+      dispatch({ type:APP_MIN});
+    }, 3000)
   },[])
+  if (!(app.initialized && app.minTimeElapsed)){
   return (
     <section className="SplashScreen">
       <div>
@@ -20,6 +38,13 @@ const SplashScreen = () => {
       </div>
     </section>
   );
+  } else {
+    return (
+      <Fragment>
+        {children}
+      </Fragment>
+    )
+  }
 }
 
 

@@ -1,12 +1,14 @@
 import appReducer from './reducers/app';
 import secReducer from './reducers/sec';
+import snippetReducer from './reducers/snippets';
 
  const mainReducer = (state= {}, action={})=>{
-  const { app, sec } = state;
+   const { app, sec, snippet } = state;
   return {
     //list all reducers of app
-    app: appReducer(app, action),
     sec: secReducer(sec, action),
+    app: appReducer(app, action),
+    snippet: snippetReducer(snippet, action),
   }
 }
 
