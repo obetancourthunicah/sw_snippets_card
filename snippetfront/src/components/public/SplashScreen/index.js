@@ -9,6 +9,8 @@ const SplashScreen = ({children}) => {
   const [ {app, sec}, dispatch ] = useSession();
   const logoutHandler = ()=>{
     dispatch({ type: SEC_LOGOUT });
+    dispatch({ type: APP_INIT });
+
   }
   useEffect(async ()=>{
     setUnAuthInterceptor(logoutHandler);

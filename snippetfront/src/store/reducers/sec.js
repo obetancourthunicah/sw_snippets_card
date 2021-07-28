@@ -34,6 +34,7 @@ const secReducer = (state = emptySec, action = {}) => {
         user:action.payload
       };
       localStorage.setItem("sec_str", JSON.stringify(newSec));
+      setJWT(newSec.user.jwt);
       return newSec;
     case SEC_FETCHING:
       return { ...state, isVerifying:true};

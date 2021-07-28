@@ -6,13 +6,18 @@ let emptySnippets = {
   snippets: [],
   filter: {},
   fetching: false,
-  hasMore: false
+  hasMore: false,
+  setCurrentId: null,
+  redirect:false,
+  currentSnippet: null,
 }
 
 export const SNIPPET_FETCHING = "SNIPPET_FETCHING";
 export const SNIPPET_LOAD = "SNIPPET_LOAD";
 export const SNIPPET_RESET = "SNIPPET_FETCHING";
 export const SNIPPET_ERROR = "SNIPPET_ERROR";
+export const SNIPPET_SETCURRENT = "SNIPPET_SETCURRENT";
+export const SNIPPET_CURRENT_LOAD = "SNIPPET_CURRENT_LOAD";
 
 
 const snippetReducer = (state = emptySnippets, action = {}) => {
@@ -44,6 +49,18 @@ const snippetReducer = (state = emptySnippets, action = {}) => {
       return {
         ...state,
         error : error
+      }
+    case SNIPPET_SETCURRENT:
+      return {
+        ...state,
+        setCurrentId: action.payload._id,
+        redirect: true,
+      }
+    case SNIPPET_CURRENT_LOAD:
+      return {
+        ...state,
+        currentSnippet: action.payload,
+        redirect: false,
       }
     default:
       return state;

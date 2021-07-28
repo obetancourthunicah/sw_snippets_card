@@ -4,7 +4,8 @@ import Page from '../../shared/Page/Page';
 import {useEffect, useRef} from 'react';
 import {privateaxios} from '../../../store/axios';
 import { useSession } from '../../../hooks/Session';
-import { SNIPPET_FETCHING, SNIPPET_LOAD } from '../../../store/reducers/snippets';
+import { SNIPPET_FETCHING, SNIPPET_LOAD, SNIPPET_SETCURRENT } from '../../../store/reducers/snippets';
+import {Redirect} from 'react-router-dom';
 
 import InfiniteScroll from 'react-infinite-scroller';
 
@@ -13,7 +14,7 @@ import './MySnippets.css';
 const MySnippets = ()=>{
 
   const [{ snippet}, dispatch] = useSession();
-  const { page, itemsPages, snippets, fetching, hasMore} = snippet;
+  const { page, itemsPages, snippets, fetching, hasMore, redirect} = snippet;
  
   const loadMoreSnippets = async ()=>{
     if(!fetching){
@@ -27,13 +28,20 @@ const MySnippets = ()=>{
       }
     }
   }
-
   useEffect(
     async () => {
       loadMoreSnippets();
     }, []
   );
 
+  const onClickHandler = (_id)=>{
+    dispatch({type:SNIPPET_SETCURRENT, payload:{_id:_id}});
+  }
+  const scrollParentRef = useRef();
+
+  if (redirect) {
+    return (<Redirect to="/mysnippet"></Redirect>);
+  }
 
   const listOfSnippets = snippets.map((o)=>{
     return (
@@ -42,11 +50,11 @@ const MySnippets = ()=>{
           <span>{o.name}</span>
           <span>{o.sales}</span>
         </span>
-        <span><MdRemoveRedEye/></span>
+        <span onClick={()=>onClickHandler(o._id)}><MdRemoveRedEye/></span>
       </li>
     );
   });
-  const scrollParentRef = useRef();
+ 
   return(
     <Page showHeader title="My Snippets">
       <section>

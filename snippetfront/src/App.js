@@ -17,6 +17,7 @@ import LoginPage from './components/public/Login/';
 import SiginPage from './components/public/Signin/';
 /* Private Pages */
 import MySnippetsPage from './components/private/MySnippets';
+import MySnippetPage from './components/private/MySnippet';
 
 import './App.css';
 
@@ -33,6 +34,7 @@ function App() {
                   <Route exact path="/sigin" component={SiginPage}></Route>
 
                   <PrivateRoute exact path="/mysnippets" component={MySnippetsPage}></PrivateRoute>
+                  <PrivateRoute exact path="/mysnippet" component={MySnippetPage}></PrivateRoute>
               </Switch>
               <Menu login={false}></Menu>
           </div>
