@@ -1,0 +1,44 @@
+.keyword {
+  display: inline-block;
+  padding:0.5rem 1rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 1.5rem;
+  color:#fff;
+  background-color: #333;
+  box-shadow: 1px 1px 5px #333;
+}
+.comment{
+  display: flex;
+  flex-direction: row;
+  padding:1rem 1rem;
+  flex-wrap: wrap;
+  box-shadow: 1px 1px 5px #333;
+  margin-bottom: 0.5rem;
+}
+.comment div:first-child{
+  display: flex;
+  font-size: 0.7rem;
+  flex-grow: 1;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+}
+.comment>div:nth-child(2){
+  font-size: 0.9rem;
+}
+.btn{
+  width: 100%;
+  background-color: #333;
+  color:#fff;
+  text-decoration: none;
+  cursor: pointer;
+  padding:0.85rem 1rem;
+  margin-top: 1rem;
+  text-align: center;
+  border-radius: 25px;
+}
+.pre{
+  background-color: #aaa;
+  padding:1rem 0.5rem;
+  box-shadow: 1px 1px 5px #333;
+}

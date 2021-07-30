@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import { privateaxios } from '../../../store/axios';
 import { SNIPPET_CURRENT_LOAD } from '../../../store/reducers/snippets';
 
+import './MySnippet.css';
+
 const MySnippet = () => {
   const [{ snippet }, dispatch ] = useSession();
 
@@ -39,16 +41,18 @@ const MySnippet = () => {
   });
   const comments = currentSnippet.comments.map((o,i)=>{
     return (
-      <section key={i}>
-        <div>{o.email}</div>
+      <section key={i} className="comment">
+        <div>
+          <div>{o.email}</div>
+          <div>{new Date(o.date).toLocaleDateString()}</div>
+        </div>
         <div>{o.comment}</div>
-        <div>{o.date}</div>
       </section>);
   });
   return (
     <Page title={currentSnippet.name} showHeader>
       <h2>Snippet</h2>
-      <pre>
+      <pre className="pre">
         {currentSnippet.snippet}
       </pre>
       <section>
@@ -59,7 +63,7 @@ const MySnippet = () => {
         <h2>Comentarios</h2>
         {comments}
       </section>
-      <Link to="/mysnippets">Regresar</Link>
+      <Link to="/mysnippets" className="btn">Regresar</Link>
     </Page>
   )
 }

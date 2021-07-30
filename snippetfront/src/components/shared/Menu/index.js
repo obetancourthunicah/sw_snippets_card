@@ -1,21 +1,23 @@
 // A todo componente de react se agrega un objeto props
 // login
 import './menu.css';
-import { Link } from 'react-router-dom';
+import { NavLink, useRouteMatch } from 'react-router-dom';
 import {useSession} from '../../../hooks/Session';
 const Menu = ()=>{
   let [ {sec}, ] = useSession();
+  let {path, ...match} = useRouteMatch();
+  console.log(path, match);
   if (!sec.isLogged){
     return (
       <ul className="Menu">
-        <li><Link to='/login'>Login</Link></li>
-        <li><Link to='/sigin'>Signin</Link></li>
+        <li><NavLink activeClassName="active" to='/login'>Login</NavLink></li>
+        <li><NavLink activeClassName="active" to='/sigin'>Signin</NavLink></li>
       </ul>
     );
   }else {
     return (
       <ul className="Menu">
-        <li><Link to="/mysnippets">Snippets</Link></li>
+        <li><NavLink activeClassName="active" to="/mysnippets">Snippets</NavLink></li>
         <li><a >Dashboard</a></li>
         <li><a >Profile</a></li>
         <li><a >Upload</a></li>

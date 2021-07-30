@@ -18,3 +18,26 @@
   flex-direction: row;
   width:calc(100% - 64px);
 }
+.scrollerParent{
+  height: calc(100vh - 84px);
+  overflow: auto;
+  margin-top:-1rem;
+  margin-left:-1rem;
+  width:100vw;
+}
+.addBtn{
+  width: 32px;
+  height:32px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0.25rem;
+  right:0.5rem;
+  color:#333;
+  background-color: #ddd;
+  box-shadow: 1px 1px 5px #000;
+  border-radius: 50%;
+  font-size: 1.5rem;
+
+}

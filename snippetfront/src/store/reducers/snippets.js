@@ -6,10 +6,11 @@ let emptySnippets = {
   snippets: [],
   filter: {},
   fetching: false,
-  hasMore: false,
+  hasMore: true,
   setCurrentId: null,
   redirect:false,
   currentSnippet: null,
+  scrollto:0,
 }
 
 export const SNIPPET_FETCHING = "SNIPPET_FETCHING";
@@ -30,7 +31,8 @@ const snippetReducer = (state = emptySnippets, action = {}) => {
     case SNIPPET_LOAD:
       const {rownum, rows, page, size} = action.payload;
       const pages = Math.ceil(rownum / size);
-      const hasMore = page !== pages;
+      console.log({rownum, rows, size, pages, page});
+      const hasMore = page <= pages;
       const newRows = [...state.snippets, ...rows];
       return {
         ...state,
@@ -54,6 +56,7 @@ const snippetReducer = (state = emptySnippets, action = {}) => {
       return {
         ...state,
         setCurrentId: action.payload._id,
+        scrollto:action.payload.scrollToY,
         redirect: true,
       }
     case SNIPPET_CURRENT_LOAD:
